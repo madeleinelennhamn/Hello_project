@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deployment
+  namespace: hello
+  labels:
+    app: hello-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-service
+  template:
+    metadata:
+      labels:
+        app: hello-service
+    spec:
+      containers:
+      - name: hello-service
+        image: madeleinelennhamn/hello:1.0
+        imagePullPolicy: IfNotPresent
